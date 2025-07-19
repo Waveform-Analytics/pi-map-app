@@ -1,0 +1,38 @@
+[
+  {
+    "id": "restaurant",
+    "name": "Restaurants",
+    "icon": "utensils",
+    "color": "#ef4444"
+  },
+  {
+    "id": "coffee",
+    "name": "Coffee & Cafes",
+    "icon": "coffee",
+    "color": "#a855f7"
+  },
+  {
+    "id": "retail",
+    "name": "Shopping",
+    "icon": "shopping-bag",
+    "color": "#3b82f6"
+  },
+  {
+    "id": "attraction",
+    "name": "Attractions",
+    "icon": "map-pin",
+    "color": "#10b981"
+  },
+  {
+    "id": "beach",
+    "name": "Beach Access",
+    "icon": "waves",
+    "color": "#06b6d4"
+  },
+  {
+    "id": "lodging",
+    "name": "Hotels & Lodging",
+    "icon": "bed",
+    "color": "#f59e0b"
+  }
+]

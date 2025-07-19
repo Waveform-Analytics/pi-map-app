@@ -1,0 +1,570 @@
+[
+  {
+    "id": "1",
+    "name": "Crush & Grind",
+    "category": "coffee",
+    "description": "Your local one stop shop for gourmet coffee, craft beer and high quality wine.",
+    "coordinates": [
+      -77.892706,
+      34.034707
+    ],
+    "address": "7 Harper Ave, Carolina Beach, NC 28428",
+    "hours": "Daily: 6am-6pm",
+    "website": "https://www.facebook.com/crushandgrindinc",
+    "isChamberMember": true,
+    "tags": [
+      "coffee",
+      "craft",
+      "local"
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Fudgeboat",
+    "category": "dessert",
+    "description": "Delicious handmade butter and cream fudge and ice cream on the Boardwalk since 2004",
+    "coordinates": [
+      -77.892673,
+      34.034652
+    ],
+    "address": "107 Carolina Beach Ave N, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.fudgeboat.com/",
+    "isChamberMember": true,
+    "tags": [
+      "dessert",
+      "boardwalk"
+    ]
+  },
+  {
+    "id": "3",
+    "name": "Michael's Seafood",
+    "category": "restaurant",
+    "description": "A Carolina Beach landmark. Fresh, never fried. Home of the 3 Time World Champion Seafood Chowder.",
+    "coordinates": [
+      -77.898493,
+      34.048482
+    ],
+    "address": "1206 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://mikescfood.com/",
+    "phone": "(910) 458-7761",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "seafood",
+      "fresh",
+      "carolina-beach"
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Four Hounds Distillery",
+    "category": "bar",
+    "description": "We are an NC based distillery focused on using local and all natural ingredients to produce craft rum",
+    "coordinates": [
+      -77.897982,
+      34.046401
+    ],
+    "address": "1202 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://fourhoundsdistilling.com/",
+    "phone": "(910) 945-0880",
+    "isChamberMember": true,
+    "tags": [
+      "bar",
+      "craft",
+      "local"
+    ]
+  },
+  {
+    "id": "5",
+    "name": "Seaworthy",
+    "category": "restaurant",
+    "description": "Delicious, fresh and creative food and drinks in a warm and inviting dining room.",
+    "coordinates": [
+      -77.894275,
+      34.038905
+    ],
+    "address": "604 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://seaworthycb.com/",
+    "phone": "(910) 636-3131",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "fresh"
+    ]
+  },
+  {
+    "id": "6",
+    "name": "HopLite",
+    "category": "bar",
+    "description": "Pleasure Island's best homemade Irish and American Pub Fare in a welcoming atmosphere with great service with  plenty of Irish whiskey and beers on tap.",
+    "coordinates": [
+      -77.894974,
+      34.040368
+    ],
+    "address": "720 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://hopliterestaurant.com/",
+    "phone": "(910) 458-4745",
+    "isChamberMember": true,
+    "tags": [
+      "bar",
+      "homemade"
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Neapolitan",
+    "category": "bar",
+    "description": "Wine Bar, Tasting Room, Beer, Cider, and Seltzer Bottle Shop located in Carolina Beach, NC!",
+    "coordinates": [
+      -77.893546,
+      34.040511
+    ],
+    "address": "800 St Joseph St, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://www.neapolitan3.com/",
+    "phone": "(910) 600-6765",
+    "isChamberMember": true,
+    "tags": [
+      "bar",
+      "carolina-beach"
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Havana's",
+    "category": "bar",
+    "description": "Your island restaurant with Fresh Seafood, Garden Salads, Hand Cut Angus Steaks, and a great wine selection! We specialize in awesome food & great service in a polished casual beach setting.",
+    "coordinates": [
+      -77.894475,
+      34.034126
+    ],
+    "address": "1 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://havanasrestaurant.com/",
+    "phone": "(910) 458-2822",
+    "isChamberMember": true,
+    "tags": [
+      "bar",
+      "seafood",
+      "steaks",
+      "casual",
+      "fine-dining",
+      "fresh"
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Shuckin' Shack",
+    "category": "restaurant",
+    "description": "Specializing in Fresh Steamed and Raw Seafood (Oysters, Shrimp, Clams, Crab Legs, Mussells)Also Voted Best Wings on the Island",
+    "coordinates": [
+      -77.893816,
+      34.034247
+    ],
+    "address": "6 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.theshuckinshack.com/location/carolina-beach/",
+    "phone": "(910) 458-7380",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "seafood",
+      "wings",
+      "oysters",
+      "fresh"
+    ]
+  },
+  {
+    "id": "10",
+    "name": "Malama Cafe",
+    "category": "coffee",
+    "description": "A cafe offering inspired sustainable healthy breakfast and lunch options and  featuring  Counter Culture Coffee",
+    "coordinates": [
+      -77.893585,
+      34.033875
+    ],
+    "address": "108 Cape Fear Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 6am-6pm",
+    "website": "https://www.malamacafe.com/",
+    "phone": "(910) 707-5077",
+    "isChamberMember": true,
+    "tags": [
+      "coffee"
+    ]
+  },
+  {
+    "id": "11",
+    "name": "Lake Park Steakhouse",
+    "category": "restaurant",
+    "description": "Locally owned Italian Steakhouse serving all the favorites",
+    "coordinates": [
+      -77.894727,
+      34.03308
+    ],
+    "address": "12 Lake Park Blvd S, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://lakeparksteakhouse.com/",
+    "phone": "(910) 707-0996",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "steaks",
+      "italian",
+      "local"
+    ]
+  },
+  {
+    "id": "12",
+    "name": "Pop's Diner",
+    "category": "dessert",
+    "description": "A 50s style diner, serving fresh and homemade food with amazing homemade desserts everyday!",
+    "coordinates": [
+      -77.893725,
+      34.034622
+    ],
+    "address": "109 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://popsdinercb.com/",
+    "phone": "(910) 458-7377",
+    "isChamberMember": true,
+    "tags": [
+      "dessert",
+      "fresh",
+      "homemade"
+    ]
+  },
+  {
+    "id": "13",
+    "name": "Carolina Beach Pier",
+    "category": "attraction",
+    "description": "A fast-casual bar & grille perched majestically right on the ocean and boasts multiple indoor and outdoor venue areas, each exuding its own unique charm!",
+    "coordinates": [
+      -77.881592,
+      34.057131
+    ],
+    "address": "1800 Carolina Beach Ave N, Carolina Beach, NC 28428",
+    "hours": "Daily: 8am-8pm",
+    "website": "https://carolinabeachpier.com/",
+    "phone": "(910) 636-3075",
+    "isChamberMember": true,
+    "tags": [
+      "attraction",
+      "waterfront",
+      "casual"
+    ]
+  },
+  {
+    "id": "14",
+    "name": "Stoked",
+    "category": "restaurant",
+    "description": "Full service Restaurant located in Carolina Beach on the harbor with boat docking access. We offer a good variety of menu items along with live music.",
+    "coordinates": [
+      -77.891952,
+      34.037608
+    ],
+    "address": "313 Canal Dr, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://stokedrestaurant.com/",
+    "phone": "(910) 458-8300",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "waterfront",
+      "live-music",
+      "carolina-beach"
+    ]
+  },
+  {
+    "id": "15",
+    "name": "Nollies Taco Joint",
+    "category": "restaurant",
+    "description": "Dank tacos with a socal twist and a full bar",
+    "coordinates": [
+      -77.891487,
+      34.036706
+    ],
+    "address": "3 Pelican Lane, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://nolliestacojoint.com/",
+    "phone": "(910) 707-0455",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "mexican"
+    ]
+  },
+  {
+    "id": "16",
+    "name": "Kate's Pancake",
+    "category": "dessert",
+    "description": "Best breakfast on Carolina Beach",
+    "coordinates": [
+      -77.894891,
+      34.032766
+    ],
+    "address": "102 S. Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "isChamberMember": true,
+    "tags": [
+      "dessert",
+      "carolina-beach"
+    ]
+  },
+  {
+    "id": "17",
+    "name": "Puffy's Magic Dragon",
+    "category": "restaurant",
+    "description": "Unique & delicious Asian Fusion and Hibachi  dishes artfully prepared",
+    "coordinates": [
+      -77.893401,
+      34.037305
+    ],
+    "address": "304 North Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://puffysmagicdragon.com/",
+    "phone": "(910) 368-1032",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "asian"
+    ]
+  },
+  {
+    "id": "18",
+    "name": "SeaWitch",
+    "category": "bar",
+    "description": "A restuarant and tiki bar offering  seafood, pasta, sandwiches and great coastal bar food.",
+    "coordinates": [
+      -77.891387,
+      34.035896
+    ],
+    "address": "227 Carolina Beach Ave North, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://seawitchtikibar.com/",
+    "phone": "(910) 707-0533",
+    "isChamberMember": true,
+    "tags": [
+      "bar",
+      "seafood"
+    ]
+  },
+  {
+    "id": "19",
+    "name": "Island Beverage",
+    "category": "bar",
+    "description": "Delightful libations and good vibes. We love beer ^ wine!",
+    "coordinates": [
+      -77.898979,
+      34.047363
+    ],
+    "address": "1206 N Lake Blvd Unit C, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://islandbevcb.com/",
+    "isChamberMember": true,
+    "tags": [
+      "bar"
+    ]
+  },
+  {
+    "id": "20",
+    "name": "Hurricane Alleys",
+    "category": "restaurant",
+    "description": "Laid back and easy restaurant with a beautiful patio bar with an even better view.",
+    "coordinates": [
+      -77.892277,
+      34.033026
+    ],
+    "address": "5 Boardwalk, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://hurricanealleyscb.com/",
+    "phone": "(910) 707-0766",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant"
+    ]
+  },
+  {
+    "id": "21",
+    "name": "Buzz's Roost",
+    "category": "restaurant",
+    "description": "Seafood, Steaks Sandwiches right at the CB boardwalk",
+    "coordinates": [
+      -77.89214,
+      34.03358
+    ],
+    "address": "8 Pavillion Ave, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.facebook.com/BuzzsBeach/?_rdr",
+    "phone": "(910) 580-4773",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "seafood",
+      "steaks",
+      "boardwalk"
+    ]
+  },
+  {
+    "id": "22",
+    "name": "Sunny Daze Smokehouse",
+    "category": "restaurant",
+    "description": "BBQ from the Carolinas and more. Open 11 am to midnight 7 days a week with an incredible ocean view!",
+    "coordinates": [
+      -77.892133,
+      34.033696
+    ],
+    "address": "9 Pavillion Ave, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.sunnydazecb.com/",
+    "phone": "(910) 636-3111",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "bbq",
+      "waterfront"
+    ]
+  },
+  {
+    "id": "23",
+    "name": "The Tropical",
+    "category": "bar",
+    "description": "Fresh bowls, homemade egg rolls, and frozen cocktails served up in Miami inspired CB boardwalk restaurant with glorious ocean views",
+    "coordinates": [
+      -77.892521,
+      34.033558
+    ],
+    "address": "2 Carolina Beach Ave North, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://goingtropicalcb.com/",
+    "phone": "(910) 707-0132",
+    "isChamberMember": true,
+    "tags": [
+      "bar",
+      "waterfront",
+      "boardwalk",
+      "fresh",
+      "homemade"
+    ]
+  },
+  {
+    "id": "24",
+    "name": "Uncle Vinny's",
+    "category": "restaurant",
+    "description": "Carolina Beach’s favorite local Italian Bar and Restaurant",
+    "coordinates": [
+      -77.896761,
+      34.02463
+    ],
+    "address": "1012 South Lake Park Boulevard, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://unclevinnyscb.com/",
+    "phone": "(910) 458-2028",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "italian",
+      "local",
+      "carolina-beach"
+    ]
+  },
+  {
+    "id": "25",
+    "name": "The Spot",
+    "category": "restaurant",
+    "description": "Restaurant driven bar where friends meet and make friends...",
+    "coordinates": [
+      -77.896654,
+      34.024882
+    ],
+    "address": "1006 S Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.thespotcb.com/",
+    "phone": "(910) 707-0990",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant"
+    ]
+  },
+  {
+    "id": "26",
+    "name": "Jack Mackerel's",
+    "category": "restaurant",
+    "description": "Seafood, steaks, burgers, and chicken prepared using the freshest, local, ingredients and Chef Anthony's Island touch.",
+    "coordinates": [
+      -77.906284,
+      33.998327
+    ],
+    "address": "113 K Avenue, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.jackmacksgrill.com/",
+    "phone": "(910) 458-7668",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "seafood",
+      "steaks",
+      "local",
+      "fresh"
+    ]
+  },
+  {
+    "id": "27",
+    "name": "Cherry Blossom Sushi",
+    "category": "restaurant",
+    "description": "Great Sushi made fast. Our sushi is never pre-made and is made with the freshest in ingredients.",
+    "coordinates": [
+      -77.892533,
+      34.033595
+    ],
+    "address": "8 Pavillion Ave #7, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.facebook.com/profile.php?id=100085035986356",
+    "phone": "(910) 636-3090",
+    "isChamberMember": true,
+    "tags": [
+      "restaurant",
+      "asian",
+      "fresh"
+    ]
+  },
+  {
+    "id": "28",
+    "name": "Salt Fish",
+    "category": "bar",
+    "description": "Eclectic dishes inspired by the Caribbean, Polynesia, and all ports in-between using locally-sourced ingredients. Full selection of signature Tiki cocktails",
+    "coordinates": [
+      -77.894896,
+      34.040068
+    ],
+    "address": "718 N Lake Ave, Carolina Beach, NC 28428",
+    "hours": "Daily: 4pm-2am",
+    "website": "https://cbsaltfish.com/",
+    "isChamberMember": true,
+    "tags": [
+      "bar",
+      "local"
+    ]
+  },
+  {
+    "id": "29",
+    "name": "The Peach Cobbler",
+    "category": "dessert",
+    "description": "A sweet specialty dessert shop",
+    "coordinates": [
+      -77.8967,
+      34.02487
+    ],
+    "address": "1010 Lake Park Blvd S, Carolina Beach, NC 28428",
+    "hours": "Daily: 11am-10pm",
+    "website": "https://www.facebook.com/profile.php?id=61553841315049",
+    "isChamberMember": true,
+    "tags": [
+      "dessert"
+    ]
+  }
+]
