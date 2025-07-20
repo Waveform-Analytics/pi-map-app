@@ -15,6 +15,7 @@ export default function MapComponent({ businesses, onBusinessClick }: MapCompone
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
+  const markersRef = useRef<mapboxgl.Marker[]>([]);
 
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -53,30 +54,16 @@ export default function MapComponent({ businesses, onBusinessClick }: MapCompone
     if (!map.current || !mapLoaded) return;
 
     // Clear existing markers
-    const existingMarkers = document.querySelectorAll('.mapboxgl-marker');
-    existingMarkers.forEach(marker => marker.remove());
+    markersRef.current.forEach(marker => marker.remove());
+    markersRef.current = [];
 
     // Add markers for each business
     businesses.forEach((business) => {
-      // Create marker element
-      const markerElement = document.createElement('div');
-      markerElement.className = 'business-marker';
-      markerElement.style.cssText = `
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: ${business.isChamberMember ? 'linear-gradient(135deg, #fb7185, #f43f5e)' : 'linear-gradient(135deg, #0ea5e9, #0284c7)'};
-        border: 3px solid white;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        cursor: pointer;
-        position: relative;
-      `;
-
       // Create popup content
       const popup = new mapboxgl.Popup({
         offset: 25,
         closeButton: true,
-        closeOnClick: false,
+        closeOnClick: true,
         className: 'custom-popup'
       }).setHTML(`
         <div class="p-4 max-w-sm" style="font-family: Inter, sans-serif;">
@@ -91,15 +78,28 @@ export default function MapComponent({ businesses, onBusinessClick }: MapCompone
           </div>
         </div>
       `);
-
-      // Create marker and add to map
-      new mapboxgl.Marker(markerElement)
+      
+      // Create marker with proper color based on chamber membership
+      const marker = new mapboxgl.Marker({
+        color: business.isChamberMember ? '#f43f5e' : '#0284c7',
+        scale: 0.8
+      })
         .setLngLat(business.coordinates)
         .setPopup(popup)
         .addTo(map.current!);
 
-      // Add click handler
+      // Store marker reference
+      markersRef.current.push(marker);
+
+      // Add click handler to the marker element
+      const markerElement = marker.getElement();
       markerElement.addEventListener('click', () => {
+        // Close all other popups
+        markersRef.current.forEach(m => {
+          if (m !== marker && m.getPopup()?.isOpen()) {
+            m.getPopup()?.remove();
+          }
+        });
         onBusinessClick?.(business);
       });
     });

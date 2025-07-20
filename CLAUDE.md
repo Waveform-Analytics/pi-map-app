@@ -166,3 +166,7 @@ marker.setLngLat(business.coordinates);
 ```
 
 This issue manifested as markers appearing in wrong locations and "sliding" during zoom operations. The root cause was that creating new coordinate arrays (even with identical values) breaks Mapbox's internal coordinate handling. 
+
+## Project Memory Notes
+
+- Keep the CLAUDE.md file up to date with the progress of the project, including if things change.
