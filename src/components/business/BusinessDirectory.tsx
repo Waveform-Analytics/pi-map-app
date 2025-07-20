@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { Business, Category } from '@/types';
 import BusinessCard from './BusinessCard';
 import { Search, Filter } from 'lucide-react';
@@ -8,13 +8,15 @@ import { Search, Filter } from 'lucide-react';
 interface BusinessDirectoryProps {
   businesses: Business[];
   categories: Category[];
-  onBusinessSelect?: (business: Business) => void;
+  selectedBusinessId?: string | null;
+  onBusinessSelect?: (business: Business | null) => void;
   hideFilters?: boolean;
 }
 
 export default function BusinessDirectory({ 
   businesses, 
   categories, 
+  selectedBusinessId,
   onBusinessSelect,
   hideFilters = false
 }: BusinessDirectoryProps) {
@@ -52,6 +54,21 @@ export default function BusinessDirectory({
       return a.name.localeCompare(b.name);
     });
   }, [filteredBusinesses]);
+
+  // Ref for business elements
+  const businessRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  // Scroll to selected business when selectedBusinessId changes
+  useEffect(() => {
+    if (selectedBusinessId && businessRefs.current[selectedBusinessId]) {
+      const element = businessRefs.current[selectedBusinessId];
+      element?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'nearest',
+        inline: 'start'
+      });
+    }
+  }, [selectedBusinessId]);
 
   return (
     <div className="space-y-8">
@@ -120,13 +137,32 @@ export default function BusinessDirectory({
 
       {/* Business grid */}
       <div className={`grid gap-6 ${hideFilters ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}>
-        {sortedBusinesses.map((business) => (
-          <BusinessCard
-            key={business.id}
-            business={business}
-            onClick={() => onBusinessSelect?.(business)}
-          />
-        ))}
+        {sortedBusinesses.map((business) => {
+          const isSelected = business.id === selectedBusinessId;
+          return (
+            <div
+              key={business.id}
+              ref={(el) => { businessRefs.current[business.id] = el; }}
+              className={`transition-all duration-200 ${
+                isSelected 
+                  ? 'bg-gradient-to-br from-sky-50 to-blue-50 border-2 border-sky-400 rounded-2xl p-2' 
+                  : ''
+              }`}
+            >
+              <BusinessCard
+                business={business}
+                onClick={() => {
+                  // Toggle behavior: if clicking the same card, deselect
+                  if (isSelected) {
+                    onBusinessSelect?.(null);
+                  } else {
+                    onBusinessSelect?.(business);
+                  }
+                }}
+              />
+            </div>
+          );
+        })}
       </div>
 
       {/* No results */}

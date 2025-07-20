@@ -8,10 +8,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 interface MapComponentProps {
   businesses: Business[];
-  onBusinessClick?: (business: Business) => void;
+  selectedBusinessId?: string | null;
+  onBusinessClick?: (business: Business | null) => void;
 }
 
-export default function MapComponent({ businesses, onBusinessClick }: MapComponentProps) {
+export default function MapComponent({ businesses, selectedBusinessId, onBusinessClick }: MapComponentProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
@@ -43,12 +44,17 @@ export default function MapComponent({ businesses, onBusinessClick }: MapCompone
       setMapLoaded(true);
     });
 
+    // Add click handler to clear selection when clicking empty space
+    map.current.on('click', () => {
+      onBusinessClick?.(null);
+    });
+
     return () => {
       if (map.current) {
         map.current.remove();
       }
     };
-  }, []);
+  }, [onBusinessClick, selectedBusinessId]);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -59,51 +65,68 @@ export default function MapComponent({ businesses, onBusinessClick }: MapCompone
 
     // Add markers for each business
     businesses.forEach((business) => {
-      // Create popup content
-      const popup = new mapboxgl.Popup({
-        offset: 25,
-        closeButton: true,
-        closeOnClick: true,
-        className: 'custom-popup'
-      }).setHTML(`
-        <div class="p-4 max-w-sm" style="font-family: Inter, sans-serif;">
-          <h3 class="font-bold text-xl text-stone-700 mb-2" style="font-family: Poppins, sans-serif;">${business.name}</h3>
-          ${business.isChamberMember ? '<span class="inline-block bg-gradient-to-r from-rose-400 to-rose-500 text-white text-xs px-3 py-1.5 rounded-full mb-3 shadow-sm font-medium">Chamber Member</span>' : ''}
-          <p class="text-sm text-stone-600 mb-3 leading-relaxed">${business.description}</p>
-          <div class="text-sm text-stone-500 space-y-2">
-            <div><strong>Hours:</strong> ${business.hours}</div>
-            <div><strong>Address:</strong> ${business.address}</div>
-            ${business.website ? `<div><a href="${business.website}" target="_blank" class="text-sky-600 hover:text-sky-700 hover:underline transition-colors">Visit Website</a></div>` : ''}
-            ${business.phone ? `<div><strong>Phone:</strong> <a href="tel:${business.phone}" class="text-sky-600 hover:text-sky-700 transition-colors">${business.phone}</a></div>` : ''}
-          </div>
-        </div>
-      `);
+      const isSelected = business.id === selectedBusinessId;
+      const hasSelection = selectedBusinessId !== null;
       
-      // Create marker with proper color based on chamber membership
+      // Create marker with proper color and size based on state
       const marker = new mapboxgl.Marker({
         color: business.isChamberMember ? '#f43f5e' : '#0284c7',
-        scale: 0.8
+        scale: isSelected ? 1.2 : 0.8
       })
         .setLngLat(business.coordinates)
-        .setPopup(popup)
         .addTo(map.current!);
 
-      // Store marker reference
+      // Store marker reference with business ID for easier management
       markersRef.current.push(marker);
 
       // Add click handler to the marker element
       const markerElement = marker.getElement();
-      markerElement.addEventListener('click', () => {
-        // Close all other popups
-        markersRef.current.forEach(m => {
-          if (m !== marker && m.getPopup()?.isOpen()) {
-            m.getPopup()?.remove();
-          }
-        });
-        onBusinessClick?.(business);
+      markerElement.style.cursor = 'pointer';
+      
+      // Visual feedback based on selection state
+      if (isSelected) {
+        // Selected marker: glow + on top
+        markerElement.style.filter = 'drop-shadow(0 0 8px rgba(14, 165, 233, 0.6))';
+        markerElement.style.zIndex = '1000';
+        markerElement.style.opacity = '1';
+      } else if (hasSelection) {
+        // Other markers when something is selected: faded
+        markerElement.style.filter = 'none';
+        markerElement.style.zIndex = '1';
+        markerElement.style.opacity = '0.4';
+      } else {
+        // No selection: normal state
+        markerElement.style.filter = 'none';
+        markerElement.style.zIndex = '1';
+        markerElement.style.opacity = '1';
+      }
+      
+      markerElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        // Toggle behavior: if clicking the same marker, deselect
+        if (isSelected) {
+          onBusinessClick?.(null);
+        } else {
+          onBusinessClick?.(business);
+        }
       });
     });
-  }, [businesses, mapLoaded, onBusinessClick]);
+  }, [businesses, mapLoaded, selectedBusinessId, onBusinessClick]);
+
+  // Center map on selected business
+  useEffect(() => {
+    if (!map.current || !selectedBusinessId) return;
+    
+    const selectedBusiness = businesses.find(b => b.id === selectedBusinessId);
+    if (selectedBusiness) {
+      map.current.flyTo({
+        center: selectedBusiness.coordinates,
+        zoom: Math.max(map.current.getZoom(), 14),
+        essential: true
+      });
+    }
+  }, [selectedBusinessId, businesses]);
 
   if (!process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN) {
     return (
