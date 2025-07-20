@@ -123,10 +123,19 @@ interface Business {
 The proof-of-concept MVP is built and functional! The app runs on **port 3001** (http://localhost:3001) to avoid conflicts with other development projects.
 
 ### What's Working
+- **Unified Map & Directory View** - Map and business directory displayed side-by-side with shared filters
 - **Interactive Mapbox map** centered on Pleasure Island (Carolina Beach, Kure Beach, Fort Fisher)
 - **Business markers** with detailed popups showing hours, contact info, and descriptions
-- **Business directory** with search, filtering by category, and Chamber member badges
-- **Tab navigation** between Map View and Business Directory
+  - Only one popup open at a time
+  - Click outside to close popups
+  - Pink markers for Chamber members, blue for others
+- **Business directory** integrated on same page as map
+- **Unified filtering system** that controls both map markers and directory listings:
+  - Search by business name or description
+  - Filter by category
+  - Chamber members only toggle
+  - Live result count
+- **Responsive layout** - Stacked on mobile, side-by-side on desktop
 - **Sample data** includes real Pleasure Island businesses:
   - Britt's Donut Shop (Carolina Beach institution since 1939)
   - NC Aquarium at Fort Fisher

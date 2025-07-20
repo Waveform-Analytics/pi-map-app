@@ -9,18 +9,25 @@ interface BusinessDirectoryProps {
   businesses: Business[];
   categories: Category[];
   onBusinessSelect?: (business: Business) => void;
+  hideFilters?: boolean;
 }
 
 export default function BusinessDirectory({ 
   businesses, 
   categories, 
-  onBusinessSelect 
+  onBusinessSelect,
+  hideFilters = false
 }: BusinessDirectoryProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showChamberOnly, setShowChamberOnly] = useState(false);
 
+  // Use passed businesses directly if filters are hidden
   const filteredBusinesses = useMemo(() => {
+    if (hideFilters) {
+      return businesses;
+    }
+    
     return businesses.filter((business) => {
       // Search filter
       const matchesSearch = business.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -35,7 +42,7 @@ export default function BusinessDirectory({
 
       return matchesSearch && matchesCategory && matchesChamber;
     });
-  }, [businesses, searchTerm, selectedCategory, showChamberOnly]);
+  }, [businesses, searchTerm, selectedCategory, showChamberOnly, hideFilters]);
 
   // Sort businesses: Chamber members first, then alphabetically
   const sortedBusinesses = useMemo(() => {
@@ -48,16 +55,19 @@ export default function BusinessDirectory({
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div className="text-center">
-        <h2 className="text-3xl font-poppins font-bold text-stone-700 mb-3">Business Directory</h2>
-        <p className="text-stone-600 text-lg">
-          Discover local businesses and Chamber members on Pleasure Island
-        </p>
-      </div>
+      {/* Header - only show if filters are visible */}
+      {!hideFilters && (
+        <div className="text-center">
+          <h2 className="text-3xl font-poppins font-bold text-stone-700 mb-3">Business Directory</h2>
+          <p className="text-stone-600 text-lg">
+            Discover local businesses and Chamber members on Pleasure Island
+          </p>
+        </div>
+      )}
 
       {/* Filters */}
-      <div className="bg-white rounded-2xl shadow-lg shadow-stone-200/50 p-6 space-y-6 border border-stone-200/50">
+      {!hideFilters && (
+        <div className="bg-white rounded-2xl shadow-lg shadow-stone-200/50 p-6 space-y-6 border border-stone-200/50">
         {/* Search */}
         <div className="relative">
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-stone-400 w-5 h-5" />
@@ -99,14 +109,17 @@ export default function BusinessDirectory({
           </label>
         </div>
       </div>
+      )}
 
       {/* Results count */}
-      <div className="text-stone-600 text-center">
-        Showing <span className="font-semibold text-stone-700">{sortedBusinesses.length}</span> of <span className="font-semibold text-stone-700">{businesses.length}</span> businesses
-      </div>
+      {!hideFilters && (
+        <div className="text-stone-600 text-center">
+          Showing <span className="font-semibold text-stone-700">{sortedBusinesses.length}</span> of <span className="font-semibold text-stone-700">{businesses.length}</span> businesses
+        </div>
+      )}
 
       {/* Business grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className={`grid gap-6 ${hideFilters ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'}`}>
         {sortedBusinesses.map((business) => (
           <BusinessCard
             key={business.id}

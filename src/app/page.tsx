@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import MapComponent from '@/components/map/MapComponent';
 import BusinessDirectory from '@/components/business/BusinessDirectory';
 import { Business } from '@/types';
@@ -11,65 +11,98 @@ import categoriesData from '@/data/categories.json';
 
 export default function Home() {
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null);
-  const [activeTab, setActiveTab] = useState<'map' | 'directory'>('map');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showChamberOnly, setShowChamberOnly] = useState(false);
 
   const businesses = businessesData as Business[];
   const categories = categoriesData;
+
+  // Unified filter logic
+  const filteredBusinesses = useMemo(() => {
+    return businesses.filter((business) => {
+      const matchesSearch = business.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          business.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === 'all' || business.category === selectedCategory;
+      const matchesChamber = !showChamberOnly || business.isChamberMember;
+      
+      return matchesSearch && matchesCategory && matchesChamber;
+    });
+  }, [businesses, searchTerm, selectedCategory, showChamberOnly]);
 
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Header */}
       <header className="bg-gradient-to-r from-stone-50 to-blue-50 shadow-sm border-b border-stone-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div>
+        <div className="max-w-full px-4 sm:px-6 lg:px-8">
+          <div className="py-6">
+            <div className="text-center mb-6">
               <h1 className="text-4xl font-poppins font-bold text-stone-700">Pleasure Island Map</h1>
               <p className="text-stone-600 text-lg mt-2 font-medium">Your friendly guide to Carolina Beach, Kure Beach & Fort Fisher</p>
             </div>
             
-            {/* Tab Navigation */}
-            <nav className="flex space-x-3">
-              <button
-                onClick={() => setActiveTab('map')}
-                className={`px-8 py-4 text-base font-semibold rounded-xl transition-all duration-200 ${
-                  activeTab === 'map'
-                    ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/25'
-                    : 'text-stone-600 hover:text-sky-600 hover:bg-white/70 bg-white/50'
-                }`}
+            {/* Unified Filters */}
+            <div className="flex flex-wrap gap-4 justify-center items-center">
+              <input
+                type="text"
+                placeholder="Search businesses..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+              />
+              
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="px-4 py-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
               >
-                Map View
-              </button>
-              <button
-                onClick={() => setActiveTab('directory')}
-                className={`px-8 py-4 text-base font-semibold rounded-xl transition-all duration-200 ${
-                  activeTab === 'directory'
-                    ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/25'
-                    : 'text-stone-600 hover:text-sky-600 hover:bg-white/70 bg-white/50'
-                }`}
-              >
-                Business Directory
-              </button>
-            </nav>
+                <option value="all">All Categories</option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
+              
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={showChamberOnly}
+                  onChange={(e) => setShowChamberOnly(e.target.checked)}
+                  className="w-4 h-4 text-sky-600 rounded focus:ring-sky-500"
+                />
+                <span className="text-stone-700 font-medium">Chamber Members Only</span>
+              </label>
+              
+              <span className="text-stone-600 text-sm">
+                Showing {filteredBusinesses.length} of {businesses.length} businesses
+              </span>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === 'map' ? (
-          <div className="bg-white rounded-2xl shadow-xl shadow-stone-200/50 overflow-hidden border border-stone-200/50">
+      {/* Main Content - Side by Side Layout */}
+      <main className="flex-1 px-4 sm:px-6 lg:px-8 py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-220px)] lg:h-[calc(100vh-240px)]">
+          {/* Map Section */}
+          <div className="bg-white rounded-2xl shadow-xl shadow-stone-200/50 overflow-hidden border border-stone-200/50 h-[50vh] lg:h-full">
             <MapComponent 
-              businesses={businesses}
+              businesses={filteredBusinesses}
               onBusinessClick={setSelectedBusiness}
             />
           </div>
-        ) : (
-          <BusinessDirectory
-            businesses={businesses}
-            categories={categories}
-            onBusinessSelect={setSelectedBusiness}
-          />
-        )}
+          
+          {/* Directory Section */}
+          <div className="overflow-y-auto h-[50vh] lg:h-full bg-white rounded-2xl shadow-xl shadow-stone-200/50 p-6 border border-stone-200/50">
+            <BusinessDirectory
+              businesses={filteredBusinesses}
+              categories={categories}
+              onBusinessSelect={setSelectedBusiness}
+              hideFilters={true}
+            />
+          </div>
+        </div>
       </main>
 
       {/* Welcome Message for new users */}
