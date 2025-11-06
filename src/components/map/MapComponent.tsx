@@ -33,7 +33,7 @@ export default function MapComponent({ businesses, selectedBusinessId, onBusines
     // Initialize map centered on Pleasure Island (Carolina Beach), NC
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
+      style: 'mapbox://styles/mapbox/light-v11',
       center: [-77.8868, 34.0581], // Carolina Beach/Pleasure Island coordinates
       zoom: 12,
     });
@@ -41,6 +41,12 @@ export default function MapComponent({ businesses, selectedBusinessId, onBusines
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     map.current.on('load', () => {
+      // Hide POI labels while keeping street names
+      const poiLayer = map.current?.getLayer('poi_label');
+      if (poiLayer) {
+        map.current?.setLayoutProperty('poi_label', 'visibility', 'none');
+      }
+      
       setMapLoaded(true);
     });
 
@@ -70,7 +76,7 @@ export default function MapComponent({ businesses, selectedBusinessId, onBusines
       
       // Create marker with proper color and size based on state
       const marker = new mapboxgl.Marker({
-        color: business.isChamberMember ? '#f43f5e' : '#0284c7',
+        color: '#0284c7',
         scale: isSelected ? 1.2 : 0.8
       })
         .setLngLat(business.coordinates)

@@ -149,12 +149,29 @@ The proof-of-concept MVP is built and functional! The app runs on **port 3001** 
   - Carolina Beach State Park
   - And more authentic local spots
 
+### ✅ Admin Tool Complete
+A dedicated admin interface for managing shops is now available at `/admin/shops` (development only).
+
+**Admin Tool Features:**
+- **Interactive map** with click-to-place functionality
+- **Drag markers** to adjust shop locations
+- **Add shops** - Click map to place marker, fill form, save
+- **Edit shops** - Click marker/shop in list to load, edit form, update
+- **Delete shops** - Remove unwanted entries with confirmation
+- **Export JSON** - Download updated businesses.json file
+- **Responsive layout** - Map on left, form + list on right
+- **Visual feedback** - Selected markers/shops highlighted
+
+**Accessing Admin Tool:**
+- Only available in development (automatically redirects to home in production)
+- Navigate to: `http://localhost:3001/admin/shops`
+
 ### Next Development Priorities
-1. **Visual improvements** - Current functionality works but needs styling polish
-2. **Events system** - Add events data structure and display
-3. **Enhanced filtering** - Add more filter options (open now, distance, etc.)
-4. **Mobile optimization** - Improve responsive design and touch interactions
-5. **Custom map styling** - Eventually move to custom Mapbox tiles for local branding
+1. **Events system** - Add events data structure and display
+2. **Enhanced filtering** - Add search/filter options when business list grows
+3. **Mobile optimization** - Improve responsive design and touch interactions
+4. **Custom map styling** - Eventually move to custom Mapbox tiles for local branding
+5. **Visual improvements** - Continue styling polish as needed
 
 ### Development Notes
 - App configured for port 3001 to avoid port conflicts

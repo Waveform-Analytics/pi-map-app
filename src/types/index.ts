@@ -1,16 +1,13 @@
 export interface Business {
   id: string;
   name: string;
-  category: string;
   description: string;
   coordinates: [number, number]; // [lng, lat]
   address: string;
   hours: string;
   website?: string;
   phone?: string;
-  isChamberMember: boolean;
   logo?: string;
-  tags: string[];
 }
 
 export interface Event {
