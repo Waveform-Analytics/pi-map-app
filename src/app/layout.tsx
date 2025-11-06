@@ -15,8 +15,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pleasure Island Map",
-  description: "Your friendly guide to Carolina Beach, Kure Beach & Fort Fisher",
+  title: "PI Pop & Shop",
+  description: "Pleasure Island Pop and Shop - Saturday, November 22nd | 11am-5pm",
 };
 
 export default function RootLayout({
