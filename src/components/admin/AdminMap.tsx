@@ -171,7 +171,7 @@ export default function AdminMap({
           y: mapCenterLngLat.y + deltaY,
         };
         
-        const newLngLat = map.current.unproject(newScreenPos);
+        const newLngLat = map.current.unproject(new mapboxgl.Point(newScreenPos.x, newScreenPos.y));
         const coords: [number, number] = [newLngLat.lng, newLngLat.lat];
         
         marker.setLngLat(coords);
