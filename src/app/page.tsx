@@ -44,29 +44,26 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-stone-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-stone-50 to-blue-50 shadow-sm border-b border-stone-200">
-        <div className="max-w-full px-4 sm:px-6 lg:px-8">
-          <div className="py-6">
-            <div className="text-center mb-6">
-              <h1 className="text-4xl font-poppins font-bold text-stone-700">Pleasure Island Pop and Shop</h1>
-              <p className="text-stone-600 text-lg mt-2 font-medium">Saturday, November 22nd, 2025</p>
+      {/* Hero Image Header */}
+      <header className="bg-white shadow-sm">
+        <div className="relative w-full">
+          <img 
+            src="/pop-and-shop-poster.png" 
+            alt="Pleasure Island Pop and Shop - Saturday, Nov 22nd, 11am-5pm" 
+            className="w-full h-auto object-contain max-h-[40vh] sm:max-h-[50vh]"
+          />
+          
+          {/* Clear selection button overlay */}
+          {selectedBusiness && (
+            <div className="absolute top-4 right-4">
+              <button
+                onClick={() => handleBusinessSelect(null)}
+                className="bg-white/90 backdrop-blur-sm text-sky-600 hover:text-sky-700 text-sm px-3 py-2 rounded-lg shadow-md border hover:bg-white transition-all"
+              >
+                Clear selection ({selectedBusiness.name})
+              </button>
             </div>
-            
-            {/* Shop Count */}
-            <div className="text-stone-600 text-sm">
-              {/*{businesses.length} shops participating*/}
-              
-              {selectedBusiness && (
-                <button
-                  onClick={() => handleBusinessSelect(null)}
-                  className="text-sky-600 hover:text-sky-700 text-sm underline ml-4"
-                >
-                  Clear selection ({selectedBusiness.name})
-                </button>
-              )}
-            </div>
-          </div>
+          )}
         </div>
       </header>
 

@@ -51,16 +51,19 @@ export default function MapComponent({ businesses, selectedBusinessId, onBusines
     });
 
     // Add click handler to clear selection when clicking empty space
-    map.current.on('click', () => {
+    // Store onBusinessClick ref to use in click handler
+    const handleEmptyClick = () => {
       onBusinessClick?.(null);
-    });
+    };
+    
+    map.current.on('click', handleEmptyClick);
 
     return () => {
       if (map.current) {
         map.current.remove();
       }
     };
-  }, [onBusinessClick, selectedBusinessId]);
+  }, []);
 
   useEffect(() => {
     if (!map.current || !mapLoaded) return;
@@ -118,21 +121,18 @@ export default function MapComponent({ businesses, selectedBusinessId, onBusines
         }
       });
     });
-  }, [businesses, mapLoaded, selectedBusinessId, onBusinessClick]);
+  }, [businesses, mapLoaded, selectedBusinessId]);
 
-  // Center map on selected business
+  // Pan to center selected marker without changing zoom
   useEffect(() => {
     if (!map.current || !selectedBusinessId) return;
     
     const selectedBusiness = businesses.find(b => b.id === selectedBusinessId);
     if (selectedBusiness) {
-      map.current.flyTo({
-        center: selectedBusiness.coordinates,
-        zoom: Math.max(map.current.getZoom(), 14),
-        essential: true
-      });
+      // Pan smoothly to center on marker (preserves zoom level)
+      map.current.panTo(selectedBusiness.coordinates, { duration: 400 });
     }
-  }, [selectedBusinessId, businesses]);
+  }, [selectedBusinessId]); // Only depend on selectedBusinessId, not businesses array
 
   if (!process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN) {
     return (
