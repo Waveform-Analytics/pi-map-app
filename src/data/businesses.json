@@ -10,7 +10,8 @@
     "address": "1206 N Lake Park Blvd",
     "hours": "",
     "website": "https://www.chloelahome.com/",
-    "phone": "(910) 636-3020"
+    "phone": "(910) 636-3020",
+    "active": true
   },
   {
     "id": "2",
@@ -23,7 +24,8 @@
     "address": "1018 N Lake Park Blvd Ste 105",
     "hours": "",
     "website": "https://shopsaltychic.com/",
-    "phone": "(910) 458-5148"
+    "phone": "(910) 458-5148",
+    "active": true
   },
   {
     "id": "3",
@@ -36,7 +38,9 @@
     "address": "1206 N Lake Blvd Unit C, Carolina Beach, NC 28428",
     "hours": "",
     "website": "https://islandbevcb.com/",
-    "phone": "(910) 707-1423"
+    "phone": "(910) 707-1423",
+    "active": true,
+    "isSponsor": true
   },
   {
     "id": "4",
@@ -49,7 +53,8 @@
     "address": "809 N Lake Park Blvd",
     "hours": "",
     "website": "https://www.facebook.com/SumthinBeachie/",
-    "phone": "(910) 707-0210"
+    "phone": "(910) 707-0210",
+    "active": true
   },
   {
     "id": "5",
@@ -62,7 +67,8 @@
     "address": "201 N Lake Park Blvd",
     "hours": "",
     "website": "https://seasideshenanigans.com/",
-    "phone": "(910) 707-0942"
+    "phone": "(910) 707-0942",
+    "active": true
   },
   {
     "id": "6",
@@ -75,7 +81,8 @@
     "address": "107 Carolina Beach Ave N, Carolina Beach, NC 28428",
     "hours": "",
     "website": "https://fudgeboat.com/",
-    "phone": "1-910-458-5823"
+    "phone": "1-910-458-5823",
+    "active": true
   },
   {
     "id": "7",
@@ -88,20 +95,22 @@
     "address": "105 Carolina Beach Ave N",
     "hours": "",
     "website": "https://www.facebook.com/p/Oceanside-Art-and-Gifts-61572235262113/",
-    "phone": "(847) 668-6191"
+    "phone": "(847) 668-6191",
+    "active": true
   },
   {
     "id": "8",
     "name": "Coharie Coastal Boutique",
     "description": "Upscale coastal fashion and accessories",
     "coordinates": [
-      -77.8936388530481,
-      34.034506080423384
+      -77.89370534051791,
+      34.03443555471972
     ],
     "address": "120 N Lake Park Blvd Suite 100",
     "hours": "",
     "website": "https://cohariecoastalboutique.com/",
-    "phone": "(910) 636-3030"
+    "phone": "(910) 636-3030",
+    "active": true
   },
   {
     "id": "9",
@@ -114,7 +123,8 @@
     "address": "103 Charlotte Ave # 100",
     "hours": "",
     "website": "https://seacreaturecb.com/",
-    "phone": ""
+    "phone": "",
+    "active": false
   },
   {
     "id": "10",
@@ -127,7 +137,8 @@
     "address": "207 Lake Park Blvd S",
     "hours": "",
     "website": "https://www.facebook.com/p/Unique-Boutique-of-Carolina-Beach-100056589707651/",
-    "phone": "+19104584360"
+    "phone": "+19104584360",
+    "active": true
   },
   {
     "id": "11",
@@ -140,11 +151,12 @@
     "address": "209 Lake Park Blvd S",
     "hours": "",
     "website": "https://www.cbsurfshop.com/",
-    "phone": "(910) 458-7005"
+    "phone": "(910) 458-7005",
+    "active": false
   },
   {
     "id": "12",
-    "name": "Island Tackle and Hardware",
+    "name": "Island Tackle & Hardware Upstairs Apparel",
     "description": "Apparel and gear for beach and outdoor adventures",
     "address": "801 N Lake Park Blvd",
     "hours": "",
@@ -153,6 +165,65 @@
       34.04014815131832
     ],
     "website": "https://islandtruevalue.com/",
-    "phone": "(910) 458-3049"
+    "phone": "(910) 458-3049",
+    "active": false
+  },
+  {
+    "id": "13",
+    "name": "Ooma Boutique",
+    "description": "Women's clothing and accessories featuring curated brands, swimwear, jewelry, and home decor",
+    "coordinates": [
+      -77.89375,
+      34.03385
+    ],
+    "address": "112 Cape Fear Blvd, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "https://oomaboutique.com/",
+    "phone": "(724) 732-7039",
+    "active": true
+  },
+  {
+    "id": "14",
+    "name": "2nd Wave Upscale Consignment",
+    "description": "Upscale consignment shop offering secondhand clothing and goods",
+    "coordinates": [
+      -77.89371329533157,
+      34.03439066108737
+    ],
+    "address": "",
+    "hours": "",
+    "website": "https://www.facebook.com/p/2nd-Wave-Upscale-Consignment-61584630365903/",
+    "phone": "",
+    "active": true,
+    "isSponsor": false
+  },
+  {
+    "id": "15",
+    "name": "Carolina Beach Market / Beach Theory",
+    "description": "Locally owned market offering snacks, cold drinks, farm fresh produce and more",
+    "coordinates": [
+      -77.89562,
+      34.03419
+    ],
+    "address": "257 Cape Fear Blvd, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "",
+    "phone": "(910) 660-3442",
+    "active": true
+  },
+  {
+    "id": "16",
+    "name": "Noé Hair & Nail Lounge",
+    "description": "Full-service hair and nail salon offering a luxury, spa-like experience",
+    "coordinates": [
+      -77.89601,
+      34.04202
+    ],
+    "address": "1000 N Lake Park Blvd, Suite 121, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "https://www.noebeauty.com",
+    "phone": "(910) 200-8414",
+    "active": true,
+    "isSponsor": true
   }
 ]

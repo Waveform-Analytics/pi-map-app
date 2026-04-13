@@ -16,6 +16,11 @@ export default function BusinessCard({ business, onClick }: BusinessCardProps) {
         <div className="flex-1">
           <h3 className="font-poppins font-bold text-xl text-stone-700 mb-2">{business.name}</h3>
         </div>
+        {business.isSponsor && (
+          <span className="ml-2 flex-shrink-0 bg-gradient-to-r from-amber-400 to-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+            Sponsor
+          </span>
+        )}
       </div>
 
       <p className="text-stone-600 text-sm mb-4 line-clamp-2 leading-relaxed">{business.description}</p>

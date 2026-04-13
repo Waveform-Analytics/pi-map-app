@@ -8,6 +8,8 @@ export interface Business {
   website?: string;
   phone?: string;
   logo?: string;
+  active?: boolean;
+  isSponsor?: boolean;
 }
 
 export interface Event {

@@ -16,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "PI Pop & Shop",
-  description: "Pleasure Island Pop and Shop - Saturday, November 22nd | 11am-5pm",
+  description: "Pleasure Island Pop and Shop Spring Edition - Saturday, April 18th | 11am-5pm",
 };
 
 export default function RootLayout({
