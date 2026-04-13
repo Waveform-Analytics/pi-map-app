@@ -26,6 +26,8 @@ export default function AdminForm({
     hours: '',
     website: '',
     phone: '',
+    active: true,
+    isSponsor: false,
   });
 
   // Initialize form when shop changes
@@ -38,6 +40,8 @@ export default function AdminForm({
         hours: shop.hours,
         website: shop.website || '',
         phone: shop.phone || '',
+        active: shop.active !== false,
+        isSponsor: shop.isSponsor || false,
       });
     } else {
       setFormData({
@@ -47,6 +51,8 @@ export default function AdminForm({
         hours: '',
         website: '',
         phone: '',
+        active: true,
+        isSponsor: false,
       });
     }
   }, [shop]);
@@ -86,6 +92,8 @@ export default function AdminForm({
       hours: '',
       website: '',
       phone: '',
+      active: true,
+      isSponsor: false,
     });
   };
 
@@ -113,7 +121,7 @@ export default function AdminForm({
           value={formData.name}
           onChange={handleChange}
           placeholder="e.g., Unique Boutique"
-          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-stone-900"
         />
       </div>
 
@@ -127,7 +135,7 @@ export default function AdminForm({
           onChange={handleChange}
           placeholder="Short description of the shop"
           rows={2}
-          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-none"
+          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-stone-900 resize-none"
         />
       </div>
 
@@ -141,7 +149,7 @@ export default function AdminForm({
           value={formData.address}
           onChange={handleChange}
           placeholder="Street address"
-          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-stone-900"
         />
       </div>
 
@@ -155,7 +163,7 @@ export default function AdminForm({
           value={formData.hours}
           onChange={handleChange}
           placeholder="e.g., 10am-6pm Daily"
-          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-stone-900"
         />
       </div>
 
@@ -169,7 +177,7 @@ export default function AdminForm({
           value={formData.website}
           onChange={handleChange}
           placeholder="https://..."
-          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-stone-900"
         />
       </div>
 
@@ -183,8 +191,29 @@ export default function AdminForm({
           value={formData.phone}
           onChange={handleChange}
           placeholder="(910) 555-1234"
-          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          className="w-full px-3 py-2 border border-stone-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-stone-900"
         />
+      </div>
+
+      <div className="flex gap-4 pt-1">
+        <label className="flex items-center gap-2 text-sm text-stone-700 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={formData.active}
+            onChange={(e) => setFormData(prev => ({ ...prev, active: e.target.checked }))}
+            className="rounded border-stone-300"
+          />
+          Active
+        </label>
+        <label className="flex items-center gap-2 text-sm text-stone-700 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={formData.isSponsor}
+            onChange={(e) => setFormData(prev => ({ ...prev, isSponsor: e.target.checked }))}
+            className="rounded border-stone-300"
+          />
+          Sponsor
+        </label>
       </div>
 
       <div className="flex gap-2 pt-2">

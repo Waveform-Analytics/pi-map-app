@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Business } from '@/types';
 import businessesData from '@/data/businesses.json';
 import AdminMap from '@/components/admin/AdminMap';
@@ -18,6 +18,21 @@ export default function AdminShopsPage() {
     setShops(businessesData as Business[]);
   }, []);
 
+  // Persist shops array to src/data/businesses.json via API
+  const saveToFile = async (updatedShops: Business[]) => {
+    try {
+      const res = await fetch('/api/businesses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedShops),
+      });
+      if (!res.ok) throw new Error('Failed to save');
+    } catch {
+      setSuccessMessage('⚠ Changes are in memory but failed to save to file');
+      setTimeout(() => setSuccessMessage(null), 5000);
+    }
+  };
+
   // Dev-only check
   useEffect(() => {
     if (process.env.NODE_ENV !== 'development') {
@@ -25,26 +40,67 @@ export default function AdminShopsPage() {
     }
   }, []);
 
+  const handleShopSelect = useCallback((shop: Business) => {
+    setSelectedShop(shop);
+    setFormCoordinates(shop.coordinates);
+  }, []);
+
+  // Sorted shop list for arrow key navigation (same order as ShopsList)
+  const sortedShops = useMemo(
+    () => [...shops].sort((a, b) => a.name.localeCompare(b.name)),
+    [shops]
+  );
+
+  // Arrow key navigation through shops
+  const handleKeyNav = useCallback(
+    (e: KeyboardEvent) => {
+      if (sortedShops.length === 0) return;
+      if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+
+      // Don't capture if user is typing in a form field
+      const tag = (e.target as HTMLElement)?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+      e.preventDefault();
+
+      const currentIndex = selectedShop
+        ? sortedShops.findIndex((s) => s.id === selectedShop.id)
+        : -1;
+
+      let nextIndex: number;
+      if (e.key === 'ArrowDown') {
+        nextIndex = currentIndex < sortedShops.length - 1 ? currentIndex + 1 : 0;
+      } else {
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : sortedShops.length - 1;
+      }
+
+      handleShopSelect(sortedShops[nextIndex]);
+    },
+    [sortedShops, selectedShop, handleShopSelect]
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyNav);
+    return () => window.removeEventListener('keydown', handleKeyNav);
+  }, [handleKeyNav]);
+
   const handleMapClick = (coordinates: [number, number]) => {
     setFormCoordinates(coordinates);
     setSelectedShop(null);
   };
 
   const handleMarkerDrag = (shopId: string, newCoordinates: [number, number]) => {
-    setShops(shops.map(shop => 
-      shop.id === shopId 
+    const updatedShops = shops.map(shop =>
+      shop.id === shopId
         ? { ...shop, coordinates: newCoordinates }
         : shop
-    ));
-    
+    );
+    setShops(updatedShops);
+
     if (selectedShop?.id === shopId) {
       setSelectedShop({ ...selectedShop, coordinates: newCoordinates });
     }
-  };
-
-  const handleShopSelect = (shop: Business) => {
-    setSelectedShop(shop);
-    setFormCoordinates(shop.coordinates);
+    saveToFile(updatedShops);
   };
 
   const handleSaveShop = (shopData: Partial<Business>) => {
@@ -60,15 +116,17 @@ export default function AdminShopsPage() {
         ...shopData,
         coordinates: formCoordinates,
       };
-      
-      setShops(shops.map(shop =>
+
+      const updatedShops = shops.map(shop =>
         shop.id === selectedShop.id ? updatedShop : shop
-      ));
-      
+      );
+      setShops(updatedShops);
+
       // Keep the shop selected with updated data
       setSelectedShop(updatedShop);
       setSuccessMessage(`✓ ${shopData.name} updated successfully!`);
       setTimeout(() => setSuccessMessage(null), 3000);
+      saveToFile(updatedShops);
     } else {
       // Add new shop
       const newShop: Business = {
@@ -81,12 +139,14 @@ export default function AdminShopsPage() {
         website: shopData.website,
         phone: shopData.phone,
       };
-      setShops([...shops, newShop]);
-      
+      const updatedShops = [...shops, newShop];
+      setShops(updatedShops);
+
       // Select the new shop
       setSelectedShop(newShop);
       setSuccessMessage(`✓ ${newShop.name} created successfully!`);
       setTimeout(() => setSuccessMessage(null), 3000);
+      saveToFile(updatedShops);
     }
   };
 
@@ -94,9 +154,13 @@ export default function AdminShopsPage() {
     if (!selectedShop) return;
     if (!confirm(`Delete "${selectedShop.name}"?`)) return;
     
-    setShops(shops.filter(shop => shop.id !== selectedShop.id));
+    const updatedShops = shops.filter(shop => shop.id !== selectedShop.id);
+    setShops(updatedShops);
     setSelectedShop(null);
     setFormCoordinates(null);
+    setSuccessMessage(`✓ "${selectedShop.name}" deleted`);
+    setTimeout(() => setSuccessMessage(null), 3000);
+    saveToFile(updatedShops);
   };
 
   const handleClear = () => {
@@ -179,25 +243,25 @@ export default function AdminShopsPage() {
             />
           </div>
 
-          {/* Form & List Section */}
-          <div className="flex flex-col gap-6">
+          {/* List & Form Section */}
+          <div className="flex flex-col gap-6 min-h-0">
+            {/* Shops List */}
+            <div className="bg-white rounded-xl shadow-lg p-6 overflow-y-auto flex-1 min-h-0">
+              <ShopsList
+                shops={shops}
+                selectedShopId={selectedShop?.id || null}
+                onShopSelect={handleShopSelect}
+              />
+            </div>
+
             {/* Form */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="bg-white rounded-xl shadow-lg p-6 overflow-y-auto flex-shrink-0 max-h-[50vh]">
               <AdminForm
                 shop={selectedShop}
                 coordinates={formCoordinates}
                 onSave={handleSaveShop}
                 onDelete={handleDeleteShop}
                 onClear={handleClear}
-              />
-            </div>
-
-            {/* Shops List */}
-            <div className="bg-white rounded-xl shadow-lg p-6 overflow-y-auto flex-1">
-              <ShopsList
-                shops={shops}
-                selectedShopId={selectedShop?.id || null}
-                onShopSelect={handleShopSelect}
               />
             </div>
           </div>

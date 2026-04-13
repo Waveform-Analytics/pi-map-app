@@ -20,7 +20,7 @@ export default function Home() {
 
   const businesses = businessesData as Business[];
 
-  const filteredBusinesses = businesses;
+  const filteredBusinesses = businesses.filter(b => b.active !== false);
 
   // Clear selection if the currently selected business is no longer visible
   useEffect(() => {
@@ -47,23 +47,12 @@ export default function Home() {
       {/* Hero Image Header */}
       <header className="bg-white shadow-sm">
         <div className="relative w-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img 
             src="/pop-and-shop-poster.png" 
-            alt="Pleasure Island Pop and Shop - Saturday, Nov 22nd, 11am-5pm" 
+            alt="Pleasure Island Pop and Shop Spring Edition - Saturday, Apr 18th, 11am-5pm" 
             className="w-full h-auto object-contain max-h-[40vh] sm:max-h-[50vh]"
           />
-          
-          {/* Clear selection button overlay */}
-          {selectedBusiness && (
-            <div className="absolute top-4 right-4">
-              <button
-                onClick={() => handleBusinessSelect(null)}
-                className="bg-white/90 backdrop-blur-sm text-sky-600 hover:text-sky-700 text-sm px-3 py-2 rounded-lg shadow-md border hover:bg-white transition-all"
-              >
-                Clear selection ({selectedBusiness.name})
-              </button>
-            </div>
-          )}
         </div>
       </header>
 
