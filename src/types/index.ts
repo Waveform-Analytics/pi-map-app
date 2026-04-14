@@ -7,6 +7,7 @@ export interface Business {
   hours: string;
   website?: string;
   phone?: string;
+  instagram?: string;
   logo?: string;
   active?: boolean;
   isSponsor?: boolean;

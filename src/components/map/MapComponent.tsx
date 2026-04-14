@@ -79,7 +79,7 @@ export default function MapComponent({ businesses, selectedBusinessId, onBusines
       
       // Create marker with proper color and size based on state
       const marker = new mapboxgl.Marker({
-        color: '#0284c7',
+        color: business.isSponsor ? '#d97706' : '#0284c7',
         scale: isSelected ? 1.2 : 0.8
       })
         .setLngLat(business.coordinates)

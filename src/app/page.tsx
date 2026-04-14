@@ -70,6 +70,30 @@ export default function Home() {
           
           {/* Directory Section */}
           <div className="overflow-y-auto h-[50vh] lg:h-full bg-white rounded-2xl shadow-xl shadow-stone-200/50 p-6 border border-stone-200/50">
+            {/* Sponsor Banner */}
+            <div className="mb-4 pb-4 border-b border-stone-200">
+              <p className="text-xs text-stone-400 uppercase tracking-wider font-semibold mb-3 text-center">Event Sponsors</p>
+              <div className="flex items-center justify-center gap-6 flex-wrap">
+                <a href="https://www.flyilm.com" target="_blank" rel="noopener noreferrer">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/sponsors/ilm.jpg" alt="ILM" className="h-10 w-auto object-contain hover:opacity-80 transition-opacity" />
+                </a>
+                <a href="https://www.carolinabeachrealty.net" target="_blank" rel="noopener noreferrer">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/sponsors/cb-realty.jpg" alt="Carolina Beach Realty" className="h-10 w-auto object-contain hover:opacity-80 transition-opacity" />
+                </a>
+                <a href="https://theproximitycb.com" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Proximity CB
+                </a>
+                <a href="https://www.noebeauty.com" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Noé Hair &amp; Nail Lounge
+                </a>
+                <a href="https://islandbevcb.com/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Island Beverage
+                </a>
+              </div>
+            </div>
+
             <BusinessDirectory
               businesses={filteredBusinesses}
               selectedBusinessId={selectedBusinessId}

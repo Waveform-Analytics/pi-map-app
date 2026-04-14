@@ -1,5 +1,5 @@
 import { Business } from '@/types';
-import { ExternalLink, Phone, Clock, MapPin } from 'lucide-react';
+import { ExternalLink, Phone, Clock, MapPin, Instagram } from 'lucide-react';
 
 interface BusinessCardProps {
   business: Business;
@@ -8,8 +8,12 @@ interface BusinessCardProps {
 
 export default function BusinessCard({ business, onClick }: BusinessCardProps) {
   return (
-    <div 
-      className="bg-white rounded-2xl shadow-lg shadow-stone-200/50 hover:shadow-xl hover:shadow-stone-300/50 transition-all duration-200 p-6 cursor-pointer border border-stone-200/50 hover:border-sky-200 transform hover:-translate-y-1"
+    <div
+      className={`rounded-2xl shadow-lg transition-all duration-200 p-6 cursor-pointer border transform hover:-translate-y-1 ${
+        business.isSponsor
+          ? 'bg-amber-50/50 border-amber-300 shadow-amber-100/50 hover:shadow-xl hover:shadow-amber-200/50 hover:border-amber-400'
+          : 'bg-white border-stone-200/50 shadow-stone-200/50 hover:shadow-xl hover:shadow-stone-300/50 hover:border-sky-200'
+      }`}
       onClick={onClick}
     >
       <div className="flex items-start justify-between mb-4">
@@ -56,14 +60,29 @@ export default function BusinessCard({ business, onClick }: BusinessCardProps) {
         {business.website && (
           <div className="flex items-center gap-3">
             <ExternalLink className="w-4 h-4 flex-shrink-0 text-sky-500" />
-            <a 
-              href={business.website} 
-              target="_blank" 
+            <a
+              href={business.website}
+              target="_blank"
               rel="noopener noreferrer"
               className="text-sky-600 hover:text-sky-700 hover:underline truncate transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
               Visit Website
+            </a>
+          </div>
+        )}
+
+        {business.instagram && (
+          <div className="flex items-center gap-3">
+            <Instagram className="w-4 h-4 flex-shrink-0 text-pink-500" />
+            <a
+              href={business.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-pink-600 hover:text-pink-700 hover:underline truncate transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Follow on Instagram
             </a>
           </div>
         )}
