@@ -54,6 +54,10 @@ export default function Home() {
             className="w-full h-auto object-contain max-h-[40vh] sm:max-h-[50vh]"
           />
         </div>
+        <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-t border-amber-200 px-4 py-3 text-center">
+          <p className="text-sm font-bold text-amber-900">Raffle SUNDAY at NOON at Island Beverage</p>
+          <p className="text-xs text-amber-800 mt-1">Bring 3 receipts for an entry to win a Pop &amp; Shop Prize Package! We&apos;re giving away 3 prize packs valued at over $400!</p>
+        </div>
       </header>
 
       {/* Main Content - Side by Side Layout */}
