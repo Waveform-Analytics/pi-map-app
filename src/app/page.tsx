@@ -95,6 +95,21 @@ export default function Home() {
                 <a href="https://islandbevcb.com/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
                   Island Beverage
                 </a>
+                <a href="https://www.facebook.com/shuckinshackcarolinabeach" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Shuckin&apos; Shack
+                </a>
+                <a href="https://www.facebook.com/oceangrilltikibar" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Oceanside Grill &amp; Tiki Bar
+                </a>
+                <a href="https://www.facebook.com/silverdollarcb" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Silver Dollar
+                </a>
+                <a href="https://fourhoundsdistilling.com/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Four Hounds Distilling
+                </a>
+                <a href="https://goodhopsbrewing.com/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Good Hops Brewing
+                </a>
               </div>
             </div>
 
