@@ -72,15 +72,24 @@ export default function MapComponent({ businesses, selectedBusinessId, onBusines
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
 
+    // Render sponsors first so shops appear on top
+    const sorted = [...businesses].sort((a, b) => {
+      if (a.isSponsor && !b.isSponsor) return -1;
+      if (!a.isSponsor && b.isSponsor) return 1;
+      return 0;
+    });
+
     // Add markers for each business
-    businesses.forEach((business) => {
+    sorted.forEach((business) => {
       const isSelected = business.id === selectedBusinessId;
       const hasSelection = selectedBusinessId !== null;
-      
+
       // Create marker with proper color and size based on state
+      // Sponsors get smaller markers so shops stand out
+      const baseScale = business.isSponsor ? 0.55 : 0.8;
       const marker = new mapboxgl.Marker({
         color: business.isSponsor ? '#d97706' : '#0284c7',
-        scale: isSelected ? 1.2 : 0.8
+        scale: isSelected ? 1.2 : baseScale,
       })
         .setLngLat(business.coordinates)
         .addTo(map.current!);

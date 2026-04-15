@@ -32,8 +32,8 @@
     "name": "Island Beverage",
     "description": "Beer, wine, and local beverages",
     "coordinates": [
-      -77.89887195190171,
-      34.04695277392527
+      -77.89887195190191,
+      34.04694932129499
     ],
     "address": "1206 N Lake Blvd Unit C, Carolina Beach, NC 28428",
     "hours": "",
@@ -75,8 +75,8 @@
     "name": "The Fudgeboat",
     "description": "Handmade fudge and ice cream on the boardwalk",
     "coordinates": [
-      -77.89246318948365,
-      34.03422066812611
+      -77.89245461197233,
+      34.0342491010902
     ],
     "address": "107 Carolina Beach Ave N, Carolina Beach, NC 28428",
     "hours": "",
@@ -89,8 +89,8 @@
     "name": "Oceanside Art & Gifts",
     "description": "Local art and unique gift items",
     "coordinates": [
-      -77.89246015632797,
-      34.034146105958555
+      -77.89243526649337,
+      34.034155836981654
     ],
     "address": "105 Carolina Beach Ave N",
     "hours": "",
@@ -103,8 +103,8 @@
     "name": "Coharie Coastal Boutique",
     "description": "Upscale coastal fashion and accessories",
     "coordinates": [
-      -77.89370534051791,
-      34.03443555471972
+      -77.89367081853294,
+      34.03453484301272
     ],
     "address": "120 N Lake Park Blvd Suite 100",
     "hours": "",
@@ -131,8 +131,8 @@
     "name": "Unique Boutique",
     "description": "Ladies wholesale clothing, all unique and one of a kind.",
     "coordinates": [
-      -77.89478975983488,
-      34.03152987064854
+      -77.89478975983415,
+      34.03152987064861
     ],
     "address": "207 Lake Park Blvd S",
     "hours": "",
@@ -161,8 +161,8 @@
     "address": "801 N Lake Park Blvd",
     "hours": "",
     "coordinates": [
-      -77.89582124774886,
-      34.04014815131832
+      -77.89582124775036,
+      34.040148151318576
     ],
     "website": "https://islandtruevalue.com/",
     "phone": "(910) 458-3049",
@@ -173,8 +173,8 @@
     "name": "Ooma Boutique",
     "description": "Women's clothing and accessories featuring curated brands, swimwear, jewelry, and home decor",
     "coordinates": [
-      -77.89375,
-      34.03385
+      -77.89371510196518,
+      34.03362506416792
     ],
     "address": "112 Cape Fear Blvd, Carolina Beach, NC 28428",
     "hours": "",
@@ -187,8 +187,8 @@
     "name": "2nd Wave Upscale Consignment",
     "description": "Upscale consignment shop offering secondhand clothing and goods",
     "coordinates": [
-      -77.89371329533157,
-      34.03439066108737
+      -77.89370821862389,
+      34.03444084600464
     ],
     "address": "120 N Lake Park Blvd Suite 104",
     "hours": "",
@@ -217,8 +217,8 @@
     "name": "Noé Hair & Nail Lounge",
     "description": "Full-service hair and nail salon offering a luxury, spa-like experience",
     "coordinates": [
-      -77.89601,
-      34.04202
+      -77.89612573409681,
+      34.04212837397739
     ],
     "address": "1000 N Lake Park Blvd, Suite 121, Carolina Beach, NC 28428",
     "hours": "",
@@ -232,8 +232,8 @@
     "name": "Shuckin' Shack",
     "description": "Oyster bar and seafood restaurant",
     "coordinates": [
-      -77.89355,
-      34.03465
+      -77.89381882302584,
+      34.03405454669999
     ],
     "address": "6 N Lake Park Blvd, Carolina Beach, NC 28428",
     "hours": "",
@@ -247,8 +247,8 @@
     "name": "Oceanside Grill & Tiki Bar",
     "description": "Beachfront dining with tiki bar and ocean views",
     "coordinates": [
-      -77.89215,
-      34.03395
+      -77.89697579756599,
+      34.02112720834987
     ],
     "address": "100 Carolina Beach Ave N, Carolina Beach, NC 28428",
     "hours": "",
@@ -262,8 +262,8 @@
     "name": "Silver Dollar",
     "description": "Bar and live music venue",
     "coordinates": [
-      -77.89340,
-      34.03430
+      -77.89235096209129,
+      34.033247536910054
     ],
     "address": "2 N Lake Park Blvd, Carolina Beach, NC 28428",
     "hours": "",
@@ -277,8 +277,8 @@
     "name": "Four Hounds Distilling",
     "description": "Craft distillery producing small-batch spirits",
     "coordinates": [
-      -77.89530,
-      34.03550
+      -77.89794792377225,
+      34.04622840961409
     ],
     "address": "",
     "hours": "",
@@ -292,8 +292,8 @@
     "name": "Good Hops Brewing",
     "description": "Local craft brewery with a laid-back vibe",
     "coordinates": [
-      -77.89640,
-      34.03780
+      -77.90475038006774,
+      34.04201248516658
     ],
     "address": "811 Harper Ave, Carolina Beach, NC 28428",
     "hours": "",

@@ -29,6 +29,7 @@ export default function AdminMap({
   const markersRef = useRef<{ [key: string]: mapboxgl.Marker }>({});
   const markerElementsRef = useRef<{ [key: string]: HTMLDivElement }>({});
   const tempMarkerRef = useRef<mapboxgl.Marker | null>(null);
+  const shopsRef = useRef<Business[]>([]);
   const dragStateRef = useRef<{
     isDragging: boolean;
     shopId: string | null;
@@ -103,20 +104,32 @@ export default function AdminMap({
     markersRef.current = {};
     markerElementsRef.current = {};
 
+    // Sort alphabetically — same order as ShopsList
+    const sorted = [...shops].sort((a, b) => a.name.localeCompare(b.name));
+
     // Add markers for each shop
-    shops.forEach((shop, index) => {
+    sorted.forEach((shop, index) => {
       const isSelected = shop.id === selectedShopId;
-      
+      const isInactive = shop.active === false;
+      const isSponsor = shop.isSponsor === true;
+
+      // Color: inactive = gray, sponsor = amber, regular = blue
+      let bgClass: string;
+      if (isInactive) {
+        bgClass = isSelected ? 'bg-stone-500 shadow-lg shadow-stone-400/50' : 'bg-stone-400 shadow-md';
+      } else if (isSponsor) {
+        bgClass = isSelected ? 'bg-amber-600 shadow-lg shadow-amber-400/50' : 'bg-amber-500 shadow-md hover:bg-amber-600';
+      } else {
+        bgClass = isSelected ? 'bg-blue-600 shadow-lg shadow-blue-400/50' : 'bg-blue-500 shadow-md hover:bg-blue-600';
+      }
+
       const markerElement = document.createElement('div');
       markerElement.style.width = isSelected ? '40px' : '32px';
       markerElement.style.height = isSelected ? '40px' : '32px';
       markerElement.style.cursor = 'grab';
       markerElement.style.userSelect = 'none';
-      markerElement.className = `rounded-full flex items-center justify-center font-bold text-white text-sm transition-all ${
-        isSelected 
-          ? 'bg-blue-600 shadow-lg shadow-blue-400/50' 
-          : 'bg-blue-500 shadow-md hover:bg-blue-600'
-      }`;
+      markerElement.style.opacity = isInactive ? '0.5' : '1';
+      markerElement.className = `rounded-full flex items-center justify-center font-bold text-white text-sm transition-all ${bgClass}`;
       markerElement.textContent = (index + 1).toString();
 
       // Create marker WITHOUT draggable property
@@ -126,72 +139,65 @@ export default function AdminMap({
         .setLngLat(shop.coordinates)
         .addTo(map.current!);
 
-      // Manual drag handlers
-      let isDragging = false;
-      let startX = 0;
-      let startY = 0;
-
+      // Drag with movement threshold — distinguishes clicks from drags
       markerElement.addEventListener('mousedown', (e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        dragStateRef.current.isDragging = true;
-        dragStateRef.current.shopId = shop.id;
-        markerElement.style.cursor = 'grabbing';
-        markerElement.style.opacity = '0.8';
-        
-        // Disable map dragging during marker drag
-        if (map.current) {
-          map.current.dragPan.disable();
-        }
-      });
 
-      const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging || !map.current) return;
+        let startX = e.clientX;
+        let startY = e.clientY;
+        let dragStarted = false;
+        let lastCoords: [number, number] | null = null;
 
-        // Get current marker position on screen
-        const mapCanvas = map.current.getCanvas();
-        const rect = mapCanvas.getBoundingClientRect();
-        
-        // Calculate delta
-        const deltaX = e.clientX - startX;
-        const deltaY = e.clientY - startY;
-        
-        // Update start position for next move
-        startX = e.clientX;
-        startY = e.clientY;
-        
-        // Convert screen delta to lngLat
-        const mapCenterLngLat = map.current.project(marker.getLngLat());
-        const newScreenPos = {
-          x: mapCenterLngLat.x + deltaX,
-          y: mapCenterLngLat.y + deltaY,
+        const handleMouseMove = (moveEvent: MouseEvent) => {
+          if (!map.current) return;
+
+          // Only enter drag mode after 4px of movement
+          if (!dragStarted) {
+            const dx = moveEvent.clientX - startX;
+            const dy = moveEvent.clientY - startY;
+            if (Math.abs(dx) + Math.abs(dy) < 4) return;
+            dragStarted = true;
+            dragStateRef.current.isDragging = true;
+            dragStateRef.current.shopId = shop.id;
+            markerElement.style.cursor = 'grabbing';
+            markerElement.style.opacity = '0.8';
+            map.current.dragPan.disable();
+            startX = moveEvent.clientX;
+            startY = moveEvent.clientY;
+            return;
+          }
+
+          const deltaX = moveEvent.clientX - startX;
+          const deltaY = moveEvent.clientY - startY;
+          startX = moveEvent.clientX;
+          startY = moveEvent.clientY;
+
+          const screenPos = map.current.project(marker.getLngLat());
+          const newLngLat = map.current.unproject(
+            new mapboxgl.Point(screenPos.x + deltaX, screenPos.y + deltaY)
+          );
+          lastCoords = [newLngLat.lng, newLngLat.lat];
+          marker.setLngLat(lastCoords);
         };
-        
-        const newLngLat = map.current.unproject(new mapboxgl.Point(newScreenPos.x, newScreenPos.y));
-        const coords: [number, number] = [newLngLat.lng, newLngLat.lat];
-        
-        marker.setLngLat(coords);
-        onMarkerDrag(shop.id, coords);
-      };
 
-      const handleMouseUp = () => {
-        isDragging = false;
-        dragStateRef.current.isDragging = false;
-        dragStateRef.current.shopId = null;
-        markerElement.style.cursor = 'grab';
-        markerElement.style.opacity = '1';
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-        
-        // Re-enable map dragging
-        if (map.current) {
-          map.current.dragPan.enable();
-        }
-      };
+        const handleMouseUp = () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+          document.removeEventListener('mouseup', handleMouseUp);
+
+          if (dragStarted) {
+            dragStateRef.current.isDragging = false;
+            dragStateRef.current.shopId = null;
+            markerElement.style.cursor = 'grab';
+            markerElement.style.opacity = isInactive ? '0.5' : '1';
+            if (map.current) map.current.dragPan.enable();
+            if (lastCoords) onMarkerDrag(shop.id, lastCoords);
+          }
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+      });
 
       markerElement.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -203,14 +209,6 @@ export default function AdminMap({
       // Store references
       markersRef.current[shop.id] = marker;
       markerElementsRef.current[shop.id] = markerElement;
-
-      // Add global mouse listeners when drag starts
-      const addMouseListeners = () => {
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-      };
-
-      markerElement.addEventListener('mousedown', addMouseListeners, { once: false });
     });
   }, [shops, selectedShopId, mapLoaded, onMarkerDrag, onMarkerClick]);
 
@@ -240,6 +238,21 @@ export default function AdminMap({
         .addTo(map.current!);
     }
   }, [formCoordinates, selectedShopId, mapLoaded]);
+
+  // Keep shops ref in sync for flyTo lookups
+  useEffect(() => { shopsRef.current = shops; }, [shops]);
+
+  // Pan/zoom to selected shop
+  useEffect(() => {
+    if (!map.current || !mapLoaded || !selectedShopId) return;
+    const shop = shopsRef.current.find(s => s.id === selectedShopId);
+    if (!shop) return;
+    map.current.easeTo({
+      center: shop.coordinates,
+      zoom: Math.max(map.current.getZoom(), 15),
+      duration: 600,
+    });
+  }, [selectedShopId, mapLoaded]);
 
   if (!process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN) {
     return (
