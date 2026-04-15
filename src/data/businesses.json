@@ -226,5 +226,80 @@
     "phone": "(910) 200-8414",
     "active": true,
     "isSponsor": true
+  },
+  {
+    "id": "17",
+    "name": "Shuckin' Shack",
+    "description": "Oyster bar and seafood restaurant",
+    "coordinates": [
+      -77.89355,
+      34.03465
+    ],
+    "address": "6 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "https://www.facebook.com/shuckinshackcarolinabeach",
+    "phone": "",
+    "active": true,
+    "isSponsor": true
+  },
+  {
+    "id": "18",
+    "name": "Oceanside Grill & Tiki Bar",
+    "description": "Beachfront dining with tiki bar and ocean views",
+    "coordinates": [
+      -77.89215,
+      34.03395
+    ],
+    "address": "100 Carolina Beach Ave N, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "https://www.facebook.com/oceangrilltikibar",
+    "phone": "",
+    "active": true,
+    "isSponsor": true
+  },
+  {
+    "id": "19",
+    "name": "Silver Dollar",
+    "description": "Bar and live music venue",
+    "coordinates": [
+      -77.89340,
+      34.03430
+    ],
+    "address": "2 N Lake Park Blvd, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "https://www.facebook.com/silverdollarcb",
+    "phone": "",
+    "active": true,
+    "isSponsor": true
+  },
+  {
+    "id": "20",
+    "name": "Four Hounds Distilling",
+    "description": "Craft distillery producing small-batch spirits",
+    "coordinates": [
+      -77.89530,
+      34.03550
+    ],
+    "address": "",
+    "hours": "",
+    "website": "https://fourhoundsdistilling.com/",
+    "phone": "",
+    "active": true,
+    "isSponsor": true
+  },
+  {
+    "id": "21",
+    "name": "Good Hops Brewing",
+    "description": "Local craft brewery with a laid-back vibe",
+    "coordinates": [
+      -77.89640,
+      34.03780
+    ],
+    "address": "811 Harper Ave, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "https://goodhopsbrewing.com/",
+    "phone": "",
+    "active": true,
+    "isSponsor": true
   }
 ]

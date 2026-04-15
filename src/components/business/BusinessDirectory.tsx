@@ -44,7 +44,7 @@ export default function BusinessDirectory({
 
       {/* Results count */}
       <div className="text-stone-600 text-center text-sm">
-        <span className="font-semibold text-stone-700">{sortedBusinesses.length}</span> shops to visit!
+        <span className="font-semibold text-stone-700">{sortedBusinesses.filter(b => !b.isSponsor).length}</span> shops and <span className="font-semibold text-amber-700">{sortedBusinesses.filter(b => b.isSponsor).length}</span> sponsors to visit!
       </div>
 
       {/* Business list */}
