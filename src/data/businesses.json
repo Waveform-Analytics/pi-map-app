@@ -18,8 +18,8 @@
     "name": "Salty Chic Boutique",
     "description": "Trendy coastal fashion, accessories, and gifts",
     "coordinates": [
-      -77.89522991812875,
-      34.0436755330134
+      -77.89515129796511,
+      34.043753707797705
     ],
     "address": "1018 N Lake Park Blvd Ste 105",
     "hours": "",
@@ -32,8 +32,8 @@
     "name": "Island Beverage",
     "description": "Beer, wine, and local beverages",
     "coordinates": [
-      -77.89887195190191,
-      34.04694932129499
+      -77.89887195190218,
+      34.0469649906494
     ],
     "address": "1206 N Lake Blvd Unit C, Carolina Beach, NC 28428",
     "hours": "",
@@ -299,6 +299,37 @@
     "hours": "",
     "website": "https://goodhopsbrewing.com/",
     "phone": "",
+    "active": true,
+    "isSponsor": true
+  },
+  {
+    "id": "22",
+    "name": "Kindred Weddings & Events",
+    "description": "Locally-owned event venue in a charming 1946 building, specializing in weddings and celebrations",
+    "coordinates": [
+      -77.89375,
+      34.03180
+    ],
+    "address": "205 Charlotte Ave, Carolina Beach, NC 28428",
+    "hours": "",
+    "website": "https://www.kindredcb.com/",
+    "phone": "(910) 218-8727",
+    "instagram": "https://www.instagram.com/kindredcb_nc",
+    "active": true,
+    "isSponsor": true
+  },
+  {
+    "id": "23",
+    "name": "Wilmington & Carolina Beach Walking Tours",
+    "description": "Guided walking tours exploring history, architecture, and local culture in Wilmington, Carolina Beach, and Southport",
+    "coordinates": [
+      -77.89280,
+      34.03400
+    ],
+    "address": "Carolina Beach, NC",
+    "hours": "",
+    "website": "https://wilmington-tours.com/",
+    "phone": "(910) 264-5970",
     "active": true,
     "isSponsor": true
   }

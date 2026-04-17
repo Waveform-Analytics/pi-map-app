@@ -110,6 +110,12 @@ export default function Home() {
                 <a href="https://goodhopsbrewing.com/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
                   Good Hops Brewing
                 </a>
+                <a href="https://www.kindredcb.com/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Kindred Weddings &amp; Events
+                </a>
+                <a href="https://wilmington-tours.com/" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-stone-600 hover:text-stone-800 transition-colors">
+                  Wilmington &amp; Carolina Beach Walking Tours
+                </a>
               </div>
             </div>
 
